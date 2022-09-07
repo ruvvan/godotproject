@@ -50,7 +50,6 @@ func _on_velocity_changed(vel):
 func _on_action(action):
 	# Changes "anim_type" if action is signaled
 	# See "anim_type" setter for more info
-	# TODO: Could this be merged with the "_on_velocity_changed" method?
 	self.anim_type = action
 
 # Reset

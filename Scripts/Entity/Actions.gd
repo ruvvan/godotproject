@@ -1,6 +1,5 @@
 class_name Actions
 extends Node
-
 # Entity actions
 # Can be used by playable and non-playable entities
 
@@ -10,12 +9,12 @@ signal change_direction(dir)
 signal create_projectile(dir)
 
 # Cooldown timer
-onready var timer = Timer.new()
+var timer
 
 
-func _ready():
-	# Set up cooldown timer
-	# Possibly change to have variable cooldown dependent on ability used
+func _init():
+	# Set up general cooldown timer
+	timer = Timer.new()
 	timer.one_shot = true
 	timer.wait_time = 0.2
 
@@ -35,7 +34,7 @@ func input_action(action, press_state, actor):
 		"Sprint":
 			# TODO: Possibly change this to work in the movement object instead,
 			# since it doesn't use a cooldown
-			actor.movement.scale_speed(press_state)
+			actor.movement.scale_speed(press_state, 4)
 		"ChangeTarget":
 			lock_on(actor)
 		"Interact":

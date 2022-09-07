@@ -13,3 +13,11 @@ func _ready():
 
 func _process(_delta):
 	pass
+
+func enable_input():
+	# Input off switch
+	disabled = false
+
+func block_input():
+	# Input on switch
+	disabled = true

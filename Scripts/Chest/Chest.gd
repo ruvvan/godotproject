@@ -6,6 +6,9 @@ extends StaticBody2D
 # Sprite
 onready var sprite = $Sprite
 
+# Openable detection area
+onready var melee_area = $MeleeArea
+
 # Openable detector and opened indicator
 var openable:bool = false
 var opened:bool = false
@@ -21,8 +24,8 @@ func _ready():
 	#Signal connections
 
 	# Connect openable detection zone to openable switches
-	signal_connect_dummy = $MeleeArea.connect("body_entered", self, "_on_body_entered")
-	signal_connect_dummy = $MeleeArea.connect("body_exited", self, "_on_body_exited")
+	signal_connect_dummy = melee_area.connect("body_entered", self, "_on_body_entered")
+	signal_connect_dummy = melee_area.connect("body_exited", self, "_on_body_exited")
 
 func _on_body_entered(_body):
 	# Make the chest openable

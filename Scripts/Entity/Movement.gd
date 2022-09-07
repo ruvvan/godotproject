@@ -20,16 +20,14 @@ var push_velocity:Vector2
 
 
 # Public Methods
-func scale_speed(pstate):
+func scale_speed(pstate, scale):
 	# Scale speed for "Sprint" action
-	# TODO: Change to allow for scale parameter to
-	# allow for general use
 
 	# For "Sprint" action, if key is pressed and speed
 	# is below "max_speed", speed is scaled
 	# Otherwise, speed is reset to "base_speed"
 	if pstate and speed < max_speed:
-		speed *= 4
+		speed *= scale
 	else:
 		speed = base_speed
 

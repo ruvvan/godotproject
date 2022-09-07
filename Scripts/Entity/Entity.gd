@@ -51,9 +51,6 @@ onready var health setget set_health
 
 # Private Methods
 func _ready():
-	# TODO: Move Actions instance's _ready() calls to its _init() instead
-	# to prevent this explicit call
-	actions._ready()
 	# Add the action cooldown timer to the scene tree
 	self.add_child(actions.timer)
 
@@ -131,18 +128,6 @@ func death():
 
 	# Hides health bar for immersion
 	health_bar.visible = false
-
-func enable_input():
-	# Input off switch
-	# TODO: Change to only be used by NPC class, since
-	# Player class has dedicated switch in "InputLogic" instance
-	disabled = false
-
-func block_input():
-	# Input on switch
-	# TODO: Change to only be used by NPC class, since
-	# Player class has dedicated switch in "InputLogic" instance
-	disabled = true
 
 func create_projectile(dir):
 	# Creates projectile child nodes when ranged attack is initiated
