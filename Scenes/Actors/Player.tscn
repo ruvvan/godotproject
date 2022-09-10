@@ -12,3 +12,6 @@ animation = "IdleD"
 
 [node name="MeleeArea" parent="." index="3"]
 monitorable = true
+
+[node name="HealthBar" parent="." index="4"]
+visible = false

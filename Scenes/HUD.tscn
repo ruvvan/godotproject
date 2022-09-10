@@ -14,6 +14,12 @@ script = ExtResource( 1 )
 [node name="Health" type="Control" parent="."]
 script = ExtResource( 4 )
 
+[node name="Hearts" type="Control" parent="Health"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Tween" type="Tween" parent="Health"]
+
 [node name="Menu" type="TabContainer" parent="."]
 visible = false
 margin_left = 25.0

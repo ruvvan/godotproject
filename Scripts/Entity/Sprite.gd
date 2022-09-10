@@ -30,10 +30,8 @@ func _on_direction_changed(dir):
 	self.anim_direction = direction[0]
 
 	# Changes melee target detection area to be in front of entity
-	# TODO: Change to be more strict by checking if owner node
-	# has a melee target detection area, or move this to the
-	# entity node.
-	owner_entity.melee_area.position = direction[1] * 9
+	if owner_entity.melee_area:
+		owner_entity.melee_area.position = direction[1] * 9
 
 # Velocity
 func _on_velocity_changed(vel):

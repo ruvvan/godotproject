@@ -1,6 +1,10 @@
 class_name Player
 extends Entity
 
+signal add_health
+signal remove_health
+
+
 # Preloads
 var input = InputLogic.new()
 
@@ -21,3 +25,12 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	movement.velocity = move_and_slide(movement.velocity)
+
+func add_health():
+	max_health += 4
+	emit_signal("add_health")
+
+func remove_health():
+	max_health -= 4
+	health -=4
+	emit_signal("remove_health")

@@ -35,7 +35,7 @@ func _on_body_exited(_body):
 	# Make the chest unopenable
 	openable = false
 
-func interaction():
+func interaction(actor):
 	# Logic for opening the container
 	if openable and not opened:
 		sprite.animation = "Open"
@@ -44,6 +44,7 @@ func interaction():
 		# TODO: Change to refer to loot tables eventually
 		var item = Item.new()
 		Inventory.add_item(item)
+		actor.remove_health()
 
 		# Make chest unopenable a second time
 		opened = true

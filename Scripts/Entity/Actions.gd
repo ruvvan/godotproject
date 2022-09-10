@@ -40,7 +40,7 @@ func input_action(action, press_state, actor):
 		"Interact":
 			var target = actor.target_logic.melee_target
 			if target and target.has_method("interaction"):
-				target.interaction()
+				target.interaction(actor)
 		"Throw":
 			ranged_attack(actor)
 
@@ -82,11 +82,10 @@ func kick(actor):
 	var target = actor.target_logic.melee_target
 
 	# Check if target entity exists and it can be attacked
-	if target and target.has_method("set_health"):
+	if target and target.has_method("hit"):
 		# Health and pushback changes
 		# TODO: Change this to vary depending on attack strength
-		target.health -= 5
-		target.movement.push_velocity = actor.melee_area.position * 10
+		target.hit()
 
 func lock_on(actor):
 	# Change ranged target

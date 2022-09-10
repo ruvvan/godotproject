@@ -1,6 +1,8 @@
 class_name Entity
 extends KinematicBody2D
 
+signal hit(damage)
+
 # General entity
 # Base class for NPCs and Player characters
 
@@ -108,7 +110,7 @@ func _physics_process(_delta):
 
 
 # Public Methods
-func interaction():
+func interaction(_actor):
 	# Reaction upon interaction call by another entity
 	# As of 09/05/22, this is a placeholder, to be overridden by
 	# inherited nodes.
@@ -146,6 +148,11 @@ func create_projectile(dir):
 	# Set projectile's trajectory
 	projectile_scene.direction = dir
 
+func hit(damage=1):
+	self.health -= damage
+	emit_signal("hit", damage)
+	print(health)
+
 
 # Setters / Getters
 func set_disabled(v):
@@ -166,7 +173,7 @@ func set_health(v):
 	if not is_inside_tree() or not combat:
 		return
 
-	health = v
+	health = clamp(v, 0, max_health)
 
 	# Set health bar value
 	health_bar.value = health
