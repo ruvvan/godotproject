@@ -32,5 +32,8 @@ func add_health():
 
 func remove_health():
 	max_health -= 4
-	health -=4
+	if health > max_health:
+		self.health = max_health
+	else:
+		self.health = health
 	emit_signal("remove_health")

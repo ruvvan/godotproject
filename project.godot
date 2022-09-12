@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/InputLogic.gd"
 }, {
-"base": "Reference",
+"base": "StaticBody2D",
 "class": "Item",
 "language": "GDScript",
 "path": "res://Scripts/Item/Item.gd"
@@ -88,6 +88,7 @@ config/icon="res://icon.png"
 
 Utilities="*res://Scripts/Autoloads/Utilities.gd"
 Inventory="*res://Scripts/Autoloads/Inventory.gd"
+Loot="*res://Scripts/Autoloads/Loot.gd"
 
 [display]
 
@@ -154,19 +155,23 @@ ui_focus_prev={
 }
 ui_left={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
 }
 ui_right={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
 }
 ui_up={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
 }
 ui_down={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
 }
 ui_page_up={
 "deadzone": 0.5,

@@ -148,10 +148,13 @@ func create_projectile(dir):
 	# Set projectile's trajectory
 	projectile_scene.direction = dir
 
-func hit(damage=1):
+func hit(actor, damage=1):
 	self.health -= damage
-	emit_signal("hit", damage)
-	print(health)
+
+	if health:
+		actions.face_entity(self, actor)
+		
+	emit_signal("hit")
 
 
 # Setters / Getters
@@ -179,5 +182,5 @@ func set_health(v):
 	health_bar.value = health
 
 	# Check if entity is dead
-	if not health_bar.value:
+	if not health:
 		death()

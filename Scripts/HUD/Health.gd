@@ -1,6 +1,5 @@
 extends Control
 # UI Health Bar
-# TODO: Add functionality for depleting health when player is hit
 
 onready var hearts = $Hearts
 onready var tween = $Tween
@@ -8,7 +7,7 @@ onready var tween = $Tween
 var health_per_heart = 4
 onready var max_health = Utilities.player.max_health
 onready var heart_count = ceil(max_health / health_per_heart)
-onready var health = 0 setget set_health
+onready var health = Utilities.player.health setget set_health
 onready var current_health = 0 setget set_current_health
 
 # Positioning constants
@@ -60,7 +59,7 @@ func remove_heart():
 
 	hearts.get_children()[index].queue_free()
 	max_health = Utilities.player.max_health
-	self.health -= 4
+	update_health()
 
 func set_health(v):
 	health = clamp(v, 0, max_health)
@@ -79,5 +78,5 @@ func set_current_health(v):
 		remaining_health = clamp(remaining_health - 4, 0, INF)
 		child.frame = frame_target
 
-func _on_player_hit(damage):
-	self.health -= damage
+func update_health():
+	self.health = Utilities.player.health

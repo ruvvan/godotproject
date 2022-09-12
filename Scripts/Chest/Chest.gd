@@ -13,6 +13,11 @@ onready var melee_area = $MeleeArea
 var openable:bool = false
 var opened:bool = false
 
+# Switch to determine contents
+var trap:bool = false
+var loot:Array
+var rng = RandomNumberGenerator.new()
+
 # Dummy variable to avoid warning for unused .connect() return value
 var signal_connect_dummy
 
@@ -27,6 +32,10 @@ func _ready():
 	signal_connect_dummy = melee_area.connect("body_entered", self, "_on_body_entered")
 	signal_connect_dummy = melee_area.connect("body_exited", self, "_on_body_exited")
 
+	# Set up item contents (if applicable)
+	loot = Loot.items[0]
+	rng.randomize()
+
 func _on_body_entered(_body):
 	# Make the chest openable
 	openable = true
@@ -35,17 +44,15 @@ func _on_body_exited(_body):
 	# Make the chest unopenable
 	openable = false
 
-func interaction(actor):
+func interaction(_actor):
 	# Logic for opening the container
 	if openable and not opened:
 		sprite.animation = "Open"
 
-		# Arbitrary result for inventory testing
-		# TODO: Change to refer to loot tables eventually
-		var item = Item.new()
-		Inventory.add_item(item)
-		actor.remove_health()
+		var rand_item = rng.randi_range(0, len(loot) - 1)
+		var item_instance = loot[rand_item].instance()
+		add_child(item_instance)
 
 		# Make chest unopenable a second time
-		opened = true
-		openable = false
+		# opened = true
+		# openable = false

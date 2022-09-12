@@ -31,7 +31,7 @@ func _on_direction_changed(dir):
 
 	# Changes melee target detection area to be in front of entity
 	if owner_entity.melee_area:
-		owner_entity.melee_area.position = direction[1] * 9
+		owner_entity.melee_area.position = direction[1] * 10
 
 # Velocity
 func _on_velocity_changed(vel):

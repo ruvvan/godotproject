@@ -85,7 +85,7 @@ func kick(actor):
 	if target and target.has_method("hit"):
 		# Health and pushback changes
 		# TODO: Change this to vary depending on attack strength
-		target.hit()
+		target.hit(actor)
 
 func lock_on(actor):
 	# Change ranged target
@@ -130,5 +130,7 @@ func ranged_attack(actor):
 	# If the actor is not targeting itself, a projectile is created
 	# in that direction
 	# (target_logic.change_target() defaults to the actor itself)
-	if not target == actor:
-		emit_signal("create_projectile", direction)
+	if not target == actor and Inventory.item_list.has("NoName"):
+		if Inventory.item_list["NoName"]["quantity"] > 0:
+			emit_signal("create_projectile", direction)
+			Inventory.item_list["NoName"]["quantity"] -= 1

@@ -12,9 +12,7 @@ func _ready():
 	actions.timer.connect("timeout", self, "enable_input")
 
 func _process(_delta):
-	if not $Timer.time_left:
-		actions.input_action("Kick", true, self)
-		$Timer.start()
+	pass
 
 func enable_input():
 	# Input off switch

@@ -25,6 +25,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 4 )
 animation = "WalkD"
+frame = 2
 playing = true
 script = ExtResource( 1 )
 
