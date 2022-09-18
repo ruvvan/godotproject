@@ -2,10 +2,12 @@ class_name Projectile
 extends RigidBody2D
 
 var signal_connect_dummy
-onready var tween = $Tween
+onready var sprite = $Sprite
 var direction = Vector2()
 var speed = 100
 var collisions
+var item_ref
+var thrower
 
 func _ready():
 	signal_connect_dummy = $VisibilityNotifier2D.connect("screen_exited", self, "kill")
@@ -26,7 +28,7 @@ func resolve_collisions():
 	if collisions:
 		var collider = collisions[0]
 
-		if collider.has_method("set_health"):
-			collider.health -= 5
+		if collider.has_method("hit"):
+			collider.hit(thrower, item_ref.phys_potency)
 
 		kill()

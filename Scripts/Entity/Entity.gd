@@ -13,6 +13,8 @@ var movement = Movement.new()
 var actions = Actions.new()
 # Variables and functions for targeting logic
 var target_logic = TargetLogic.new()
+# Variables and functions for inventory logic
+var inventory = Inventory.new()
 
 # Dummy variable to avoid warning for unused .connect() return value
 var signal_connect_dummy
@@ -29,8 +31,7 @@ export(NodePath) var target_path
 # Encapsulation of target detection zones for quick reference 
 onready var melee_area = $MeleeArea
 onready var ranged_area = $RangedArea
-# Preload projectile scene for quick instancing
-var projectile = preload("res://Scenes/Actors/Projectile.tscn")
+
 # Switch to determine whether entity can participate in combat
 # TODO: Currently this is used as a kind of invincibility switch
 # to prevent characters from receiving/giving damage. Possibly change
@@ -131,14 +132,12 @@ func death():
 	# Hides health bar for immersion
 	health_bar.visible = false
 
-func create_projectile(dir):
+func create_projectile(dir, item):
 	# Creates projectile child nodes when ranged attack is initiated
 
 	# Create an instance of "Projectile" scene
-	var projectile_scene = projectile.instance()
-
-	# Add instance to scene tree
-	self.owner.add_child(projectile_scene)
+	var projectile_scene = item.duplicate()
+	projectile_scene.thrown = true
 
 	# Correct position of projectile so it doesn't instantaneously collide
 	# with the thrower. Calculated from thrower's global position, offset
@@ -147,6 +146,10 @@ func create_projectile(dir):
 
 	# Set projectile's trajectory
 	projectile_scene.direction = dir
+	projectile_scene.thrower = self
+
+	# Add instance to scene tree
+	self.owner.add_child(projectile_scene)
 
 func hit(actor, damage=1):
 	self.health -= damage

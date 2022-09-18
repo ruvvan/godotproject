@@ -13,6 +13,23 @@ script = ExtResource( 5 )
 
 [node name="Chest" parent="YSort" instance=ExtResource( 6 )]
 position = Vector2( 90, 33 )
+loot_class = 0
+
+[node name="Chest5" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 168, 24 )
+loot_class = 0
+
+[node name="Chest4" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 103, 112 )
+loot_class = 0
+
+[node name="Chest3" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 120, 54 )
+loot_class = 0
+
+[node name="Chest2" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 42, 52 )
+loot_class = 0
 
 [node name="ShiShi" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 240, 39 )

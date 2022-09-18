@@ -130,7 +130,8 @@ func ranged_attack(actor):
 	# If the actor is not targeting itself, a projectile is created
 	# in that direction
 	# (target_logic.change_target() defaults to the actor itself)
-	if not target == actor and Inventory.item_list.has("NoName"):
-		if Inventory.item_list["NoName"]["quantity"] > 0:
-			emit_signal("create_projectile", direction)
-			Inventory.item_list["NoName"]["quantity"] -= 1
+	var item = actor.inventory.equipment["Ranged"]
+
+	if not target == actor and item:
+		if actor.inventory.remove_item(item):
+			emit_signal("create_projectile", direction, item)

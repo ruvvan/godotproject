@@ -20,12 +20,6 @@ func _input(event):
 			else:
 				menu.current_tab = 0
 
-		# Select an item
-		if event.is_action_pressed("Interact") and $Menu.visible:
-			if $Menu.get_current_tab_control().name == "Inventory":
-				var selected_item = $Menu/Inventory.get_item_text($Menu/Inventory.selected_index).split(": ")[0]
-				Inventory.item_list[selected_item]["ref"].use(Utilities.player)
-
 func toggle_pause():
 	if get_tree().paused:
 		get_tree().paused = false
@@ -33,5 +27,6 @@ func toggle_pause():
 	else:
 		get_tree().paused = true
 		menu.visible = true
-		$Menu/Inventory.show()
+		$Menu/Inventory/Items.show()
+		$Menu/Inventory/Equipment/EquipmentGrid.show()
 		$Menu/Debug.show()
